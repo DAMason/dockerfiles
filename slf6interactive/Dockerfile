@@ -1,6 +1,6 @@
-FROM scientificlinux/sl:7
+FROM scientificlinux/sl:6
 
-# Trying to approximate an SLF7 interactive node, with FNAL kerberos, voms, xrdcp
+# Trying to approximate an SLF6 interactive node, with FNAL kerberos, voms, xrdcp
 # cvmfs mounts assumed done externally (as would be done on FNAL workers)
 
 LABEL maintainer "D. Mason <dmason@fnal.gov>"
@@ -11,12 +11,12 @@ RUN yum -y install git && \
     curl http://metrics.fnal.gov/authentication/krb5conf/Linux/krb5.conf -o /etc/krb5.conf 
   
 # voms   
-RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el7-release-latest.rpm && \
+RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el6-release-latest.rpm && \
     yum -y install voms-clients && \
     yum -y install osg-ca-certs 
 #    yum -y install igtf-ca-certs
     
-RUN curl http://xrootd.org/binaries/xrootd-stable-slc7.repo -o xrootd-stable-slc7.repo && \
+RUN curl http://xrootd.org/binaries/xrootd-stable-slc6.repo -o xrootd-stable-slc6.repo && \
     yum -y install  xrootd && \
     yum -y install  xrootd-client
 
