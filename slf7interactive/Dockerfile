@@ -14,7 +14,7 @@ RUN yum -y install git && \
 RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el7-release-latest.rpm && \
     yum -y install voms-clients && \
     yum -y install osg-ca-certs 
-#    yum -y install igtf-ca-certs
+#    yum -y install igtf-ca-bundle
     
 RUN curl http://xrootd.org/binaries/xrootd-stable-slc7.repo -o xrootd-stable-slc7.repo && \
     yum -y install  xrootd && \
@@ -24,6 +24,7 @@ COPY vomses /etc/vomses
     
 CMD ["/bin/bash"] 
 WORKDIR /home/dmason
+ENV HOME /home/dmason
 ENV X509_USER_CERT /home/dmason/.globus/usercert.pem
 ENV X509_USER_KEY /home/dmason/.globus/userkey.pem
 
