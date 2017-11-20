@@ -8,6 +8,7 @@ LABEL maintainer "D. Mason <dmason@fnal.gov>"
 # basic functional stuff
 RUN yum -y install git && \
     yum -y install krb5-workstation && \
+    yum -y install wget && \
     curl http://metrics.fnal.gov/authentication/krb5conf/Linux/krb5.conf -o /etc/krb5.conf 
   
 # voms   
