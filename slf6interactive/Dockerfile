@@ -17,11 +17,12 @@ RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el6-release-latest.rpm && 
     yum -y install osg-ca-certs 
 #    yum -y install igtf-ca-bundle
     
+COPY ./vomses /etc/vomses    
+
+# xrootd    
 RUN curl http://xrootd.org/binaries/xrootd-stable-slc6.repo -o xrootd-stable-slc6.repo && \
     yum -y install  xrootd && \
     yum -y install  xrootd-client
-
-COPY vomses /etc/vomses    
     
 CMD ["/bin/bash"] 
 WORKDIR /home/dmason
