@@ -17,12 +17,16 @@ RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el6-release-latest.rpm && 
     yum -y install osg-ca-certs 
 #    yum -y install igtf-ca-bundle
     
+# this is just brought into local dir from lpc.     
 COPY ./vomses /etc/vomses    
 
 # xrootd    
 RUN curl http://xrootd.org/binaries/xrootd-stable-slc6.repo -o xrootd-stable-slc6.repo && \
     yum -y install  xrootd && \
     yum -y install  xrootd-client
+    
+# for SCRAM to work
+RUN yum -y install perl-CPAN    
     
 CMD ["/bin/bash"] 
 WORKDIR /home/dmason
