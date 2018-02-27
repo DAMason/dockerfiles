@@ -25,6 +25,10 @@ RUN curl http://xrootd.org/binaries/xrootd-stable-slc7.repo -o xrootd-stable-slc
     yum -y install  xrootd && \
     yum -y install  xrootd-client
     
+    
+# singularity
+RUN yum -y install singularity
+    
 # for SCRAM to work
 RUN yum -y install perl-CPAN
 
