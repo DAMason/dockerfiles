@@ -32,6 +32,12 @@ RUN yum -y install singularity
 # for SCRAM to work
 RUN yum -y install perl-CPAN
 
+# Add EPEL
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+# install python3 (needs EPEL)
+yum -y install python36
+
 CMD ["/bin/bash"] 
 WORKDIR /home/dmason
 ENV HOME /home/dmason
