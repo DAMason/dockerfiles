@@ -12,13 +12,19 @@ RUN yum -y install git && \
     curl http://metrics.fnal.gov/authentication/krb5conf/Linux/krb5.conf -o /etc/krb5.conf 
   
 # voms   
-RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el7-release-latest.rpm && \
+RUN rpm -Uvh https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-latest.rpm && \
     yum -y install voms-clients && \
     yum -y install osg-ca-certs 
 #    yum -y install igtf-ca-bundle
  
 # this is just brought into local dir from lpc. 
-COPY ./vomses /etc/vomses     
+# Needs to be in the same dir as this Dockerfile!
+
+COPY ./vomses /etc/vomses
+
+# Add EPEL
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
  
 # xrootd   
 RUN curl http://xrootd.org/binaries/xrootd-stable-slc7.repo -o xrootd-stable-slc7.repo && \
@@ -32,11 +38,8 @@ RUN yum -y install singularity
 # for SCRAM to work
 RUN yum -y install perl-CPAN
 
-# Add EPEL
-yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
 # install python3 (needs EPEL)
-yum -y install python36
+RUN yum -y install python36
 
 CMD ["/bin/bash"] 
 WORKDIR /home/dmason

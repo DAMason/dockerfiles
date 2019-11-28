@@ -12,12 +12,13 @@ RUN yum -y install git && \
     curl http://metrics.fnal.gov/authentication/krb5conf/Linux/krb5.conf -o /etc/krb5.conf 
   
 # voms   
-RUN rpm -Uvh https://repo.grid.iu.edu/osg/3.4/osg-3.4-el6-release-latest.rpm && \
+RUN rpm -Uvh https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el6-release-latest.rpm && \
     yum -y install voms-clients && \
     yum -y install osg-ca-certs 
 #    yum -y install igtf-ca-bundle
     
 # this is just brought into local dir from lpc.     
+# Needs to be in the same dir as this Dockerfile!
 COPY ./vomses /etc/vomses    
 
 # xrootd    
