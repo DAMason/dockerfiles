@@ -29,7 +29,8 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
 # xrootd   
 RUN curl http://xrootd.org/binaries/xrootd-stable-slc7.repo -o xrootd-stable-slc7.repo && \
     yum -y install  xrootd && \
-    yum -y install  xrootd-client
+    yum -y install  xrootd-client && \
+    yum -y install  gfal2-util
     
     
 # singularity
