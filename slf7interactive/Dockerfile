@@ -12,7 +12,7 @@ RUN yum -y install git && \
     curl http://metrics.fnal.gov/authentication/krb5conf/Linux/krb5.conf -o /etc/krb5.conf 
   
 # voms   
-RUN rpm -Uvh https://repo.opensciencegrid.org/osg/3.4/osg-3.4-el7-release-latest.rpm && \
+RUN rpm -Uvh https://repo.opensciencegrid.org/osg/3.5/osg-3.5-el7-release-latest.rpm && \
     yum -y install voms-clients && \
     yum -y install osg-ca-certs 
 #    yum -y install igtf-ca-bundle
@@ -29,8 +29,12 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
 # xrootd   
 RUN curl http://xrootd.org/binaries/xrootd-stable-slc7.repo -o xrootd-stable-slc7.repo && \
     yum -y install  xrootd && \
-    yum -y install  xrootd-client && \
-    yum -y install  gfal2-util
+    yum -y install  xrootd-client 
+    
+    
+RUN curl http://fts-repo.web.cern.ch/fts-repo/fts3-rc-el7.repo -o /etc/yum.repos.d/fts3-prod-el7.repo  && \  
+    yum -y install  gfal2-util && \
+    yum -y install	fts-client
     
     
 # singularity
